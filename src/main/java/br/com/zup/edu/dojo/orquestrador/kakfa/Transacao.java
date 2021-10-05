@@ -44,4 +44,28 @@ public class Transacao {
         this.idCliente = idCliente;
         this.numeroDaConta = numeroDaConta;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public TipoOperacao getOperacao() {
+        return operacao;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public LocalDateTime getEfetuadaEm() {
+        return efetuadaEm;
+    }
+
+    public UUID getIdCliente() {
+        return idCliente;
+    }
+
+    public String getNumeroDaConta() {
+        return numeroDaConta;
+    }
 }

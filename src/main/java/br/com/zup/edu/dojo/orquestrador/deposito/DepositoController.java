@@ -2,17 +2,17 @@ package br.com.zup.edu.dojo.orquestrador.deposito;
 
 import br.com.zup.edu.dojo.orquestrador.clients.TransacaoRequest;
 import br.com.zup.edu.dojo.orquestrador.handler.ValidationErrorsOutputDto;
-import br.com.zup.edu.dojo.orquestrador.kakfa.KafkaProducerService;
-import br.com.zup.edu.dojo.orquestrador.kakfa.TipoOperacao;
-import br.com.zup.edu.dojo.orquestrador.kakfa.TransacaoMensagem;
-import br.com.zup.edu.dojo.orquestrador.kakfa.TransacaoRepository;
+import br.com.zup.edu.dojo.orquestrador.kakfa.*;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RestController
@@ -27,6 +27,7 @@ public class DepositoController {
     @Autowired
     private TransacaoRepository transacaoRepository;
 
+    @Transactional
     @PostMapping(value = "/{idCliente}/deposito", produces = {"application/json"})
     public ResponseEntity<?> deposita(@PathVariable UUID idCliente, @RequestBody @Valid DepositoRequest request) {
         TransacaoRequest transacaoRequest = request.paraTransacao();

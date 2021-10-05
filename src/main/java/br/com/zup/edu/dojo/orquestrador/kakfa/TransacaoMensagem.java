@@ -22,6 +22,14 @@ public class TransacaoMensagem {
         this.numeroDaConta = numeroDaConta;
     }
 
+    public TransacaoMensagem(Transacao transacao) {
+        this.tipoOperacao = transacao.getOperacao();
+        this.valor = transacao.getValor();
+        this.efetuadaEm = transacao.getEfetuadaEm();
+        this.idCliente = transacao.getIdCliente();
+        this.numeroDaConta = transacao.getNumeroDaConta();
+    }
+
     public TipoOperacao getTipoOperacao() {
         return tipoOperacao;
     }
