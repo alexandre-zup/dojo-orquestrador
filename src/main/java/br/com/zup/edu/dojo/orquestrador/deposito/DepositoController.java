@@ -1,8 +1,11 @@
 package br.com.zup.edu.dojo.orquestrador.deposito;
 
+import br.com.zup.edu.dojo.orquestrador.clients.TipoTransacao;
 import br.com.zup.edu.dojo.orquestrador.clients.TransacaoRequest;
 import br.com.zup.edu.dojo.orquestrador.handler.ValidationErrorsOutputDto;
-import br.com.zup.edu.dojo.orquestrador.kakfa.*;
+import br.com.zup.edu.dojo.orquestrador.kakfa.KafkaProducerService;
+import br.com.zup.edu.dojo.orquestrador.kakfa.TransacaoMensagem;
+import br.com.zup.edu.dojo.orquestrador.kakfa.TransacaoRepository;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RestController
@@ -29,8 +30,22 @@ public class DepositoController {
 
     @Transactional
     @PostMapping(value = "/{idCliente}/deposito", produces = {"application/json"})
-    public ResponseEntity<?> deposita(@PathVariable UUID idCliente, @RequestBody @Valid DepositoRequest request) {
-        TransacaoRequest transacaoRequest = request.paraTransacao();
+    public ResponseEntity<?> deposita(@PathVariable UUID idCliente,
+                                      @RequestBody @Valid NovaTransacaoRequest request) {
+
+        return processaTransacao(idCliente, request, TipoTransacao.CREDITO);
+    }
+
+    @Transactional
+    @PostMapping(value = "/{idCliente}/saque", produces = {"application/json"})
+    public ResponseEntity<?> saque(@PathVariable UUID idCliente,
+                                   @RequestBody @Valid NovaTransacaoRequest request) {
+
+        return processaTransacao(idCliente, request, TipoTransacao.DEBITO);
+    }
+
+    private ResponseEntity<?> processaTransacao(UUID idCliente, NovaTransacaoRequest request, TipoTransacao tipoTransacao) {
+        TransacaoRequest transacaoRequest = request.paraTransacao(tipoTransacao);
 
         try {
             client.criaTransacao(idCliente, transacaoRequest);
@@ -44,7 +59,9 @@ public class DepositoController {
             return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(new ValidationErrorsOutputDto("Desculpe, tente novamente mais tarde."));
         }
 
-        TransacaoMensagem mensagem = transacaoRequest.paraTransacaoMensagem(idCliente, TipoOperacao.DEPOSITO);
+        TransacaoMensagem mensagem = transacaoRequest
+                .paraTransacaoMensagem(idCliente);
+
         try {
             kafkaService.enviaTransacao(mensagem);
         } catch (Exception e) {

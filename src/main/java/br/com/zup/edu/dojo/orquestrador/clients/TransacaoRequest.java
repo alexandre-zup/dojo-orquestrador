@@ -43,7 +43,7 @@ public class TransacaoRequest {
         return valor;
     }
 
-    public TransacaoMensagem paraTransacaoMensagem(UUID idCliente, TipoOperacao tipoOperacao) {
-        return new TransacaoMensagem(tipoOperacao, valor, LocalDateTime.now(), idCliente, numeroDaConta);
+    public TransacaoMensagem paraTransacaoMensagem(UUID idCliente) {
+        return new TransacaoMensagem(this.tipoDaTransacao.getOperacao(), valor, LocalDateTime.now(), idCliente, numeroDaConta);
     }
 }
