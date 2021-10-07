@@ -1,8 +1,7 @@
-package br.com.zup.edu.dojo.orquestrador.deposito;
+package br.com.zup.edu.dojo.orquestrador.transacao;
 
 import br.com.zup.edu.dojo.orquestrador.clients.TipoTransacao;
 import br.com.zup.edu.dojo.orquestrador.clients.TransacaoRequest;
-import br.com.zup.edu.dojo.orquestrador.kakfa.TipoOperacao;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;

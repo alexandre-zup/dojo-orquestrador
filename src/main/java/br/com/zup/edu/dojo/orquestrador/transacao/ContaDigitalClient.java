@@ -1,4 +1,4 @@
-package br.com.zup.edu.dojo.orquestrador.deposito;
+package br.com.zup.edu.dojo.orquestrador.transacao;
 
 import br.com.zup.edu.dojo.orquestrador.clients.TransacaoRequest;
 import org.springframework.cloud.openfeign.FeignClient;

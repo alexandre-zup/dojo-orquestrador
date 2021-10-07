@@ -1,4 +1,4 @@
-package br.com.zup.edu.dojo.orquestrador.deposito;
+package br.com.zup.edu.dojo.orquestrador.transacao;
 
 import br.com.zup.edu.dojo.orquestrador.clients.TipoTransacao;
 import br.com.zup.edu.dojo.orquestrador.clients.TransacaoRequest;
@@ -18,7 +18,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/conta")
-public class DepositoController {
+public class TransacaoController {
     @Autowired
     private ContaDigitalClient client;
 
