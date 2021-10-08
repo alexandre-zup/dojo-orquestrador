@@ -28,7 +28,6 @@ public enum TipoTransacao {
         }
     };
 
-
     public abstract TipoTransacaoContaDigital getTransacaoContaDigital();
 
 }

@@ -11,18 +11,18 @@ public class TransacaoMensagem {
     private BigDecimal valor;
     private LocalDateTime efetuadaEm;
     private UUID idCliente;
-    private String numeroDaConta;
+    private String numeroConta;
 
     @Deprecated
     public TransacaoMensagem() {
     }
 
-    public TransacaoMensagem(TipoTransacao tipoTransacao, BigDecimal valor, LocalDateTime efetuadaEm, UUID idCliente, String numeroDaConta) {
+    public TransacaoMensagem(TipoTransacao tipoTransacao, BigDecimal valor, LocalDateTime efetuadaEm, UUID idCliente, String numeroConta) {
         this.tipoTransacao = tipoTransacao;
         this.valor = valor;
         this.efetuadaEm = efetuadaEm;
         this.idCliente = idCliente;
-        this.numeroDaConta = numeroDaConta;
+        this.numeroConta = numeroConta;
     }
 
     public TransacaoMensagem(Transacao transacao) {
@@ -30,10 +30,10 @@ public class TransacaoMensagem {
         this.valor = transacao.getValor();
         this.efetuadaEm = transacao.getEfetuadaEm();
         this.idCliente = transacao.getIdCliente();
-        this.numeroDaConta = transacao.getNumeroDaConta();
+        this.numeroConta = transacao.getNumeroConta();
     }
 
-    public TipoTransacao getTipoOperacao() {
+    public TipoTransacao getTipoTransacao() {
         return tipoTransacao;
     }
 
@@ -49,11 +49,11 @@ public class TransacaoMensagem {
         return idCliente;
     }
 
-    public String getNumeroDaConta() {
-        return numeroDaConta;
+    public String getNumeroConta() {
+        return numeroConta;
     }
 
     public Transacao toModel() {
-        return new Transacao(tipoTransacao, valor, efetuadaEm, idCliente, numeroDaConta);
+        return new Transacao(tipoTransacao, valor, efetuadaEm, idCliente, numeroConta);
     }
 }

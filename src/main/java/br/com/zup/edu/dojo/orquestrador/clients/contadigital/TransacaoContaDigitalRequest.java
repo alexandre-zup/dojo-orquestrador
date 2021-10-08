@@ -12,7 +12,7 @@ public class TransacaoContaDigitalRequest {
 
     @NotBlank
     @JsonProperty
-    private String numeroDaConta;
+    private String numeroConta;
     @NotNull
     @JsonProperty
     private TipoTransacaoContaDigital tipoDaTransacao;
@@ -22,14 +22,14 @@ public class TransacaoContaDigitalRequest {
     private BigDecimal valor;
 
 
-    public TransacaoContaDigitalRequest(String numeroDaConta, TipoTransacaoContaDigital tipoDaTransacao, BigDecimal valor) {
-        this.numeroDaConta = numeroDaConta;
+    public TransacaoContaDigitalRequest(String numeroConta, TipoTransacaoContaDigital tipoDaTransacao, BigDecimal valor) {
+        this.numeroConta = numeroConta;
         this.tipoDaTransacao = tipoDaTransacao;
         this.valor = valor;
     }
 
-    public String getNumeroDaConta() {
-        return numeroDaConta;
+    public String getNumeroConta() {
+        return numeroConta;
     }
 
     public TipoTransacaoContaDigital getTipoDaTransacao() {
@@ -40,10 +40,4 @@ public class TransacaoContaDigitalRequest {
         return valor;
     }
 
-
-
-
-//    public TransacaoMensagem paraTransacaoMensagem(UUID idCliente) {
-//        return new TransacaoMensagem(this.tipoDaTransacao.getOperacao(), valor, LocalDateTime.now(), idCliente, numeroDaConta);
-//    }
 }

@@ -15,24 +15,24 @@ import java.util.UUID;
 public class NovaTransacaoContaDigitalRequest {
     @NotBlank
     @JsonProperty
-    private String numeroDaConta;
+    private String numeroConta;
     @NotNull
     @Positive
     @JsonProperty
     private BigDecimal valor;
 
 
-    public NovaTransacaoContaDigitalRequest(String numeroDaConta, BigDecimal valor) {
-        this.numeroDaConta = numeroDaConta;
+    public NovaTransacaoContaDigitalRequest(String numeroConta, BigDecimal valor) {
+        this.numeroConta = numeroConta;
         this.valor = valor;
     }
 
     public TransacaoContaDigitalRequest paraTransacao(TipoTransacaoContaDigital tipoTransacao) {
-        return new TransacaoContaDigitalRequest(numeroDaConta, tipoTransacao, valor);
+        return new TransacaoContaDigitalRequest(numeroConta, tipoTransacao, valor);
     }
 
     public TransacaoMensagem paraTransacaoMensagem(UUID idCliente, TipoTransacao transacao) {
-        return new TransacaoMensagem(transacao, valor, LocalDateTime.now(), idCliente, numeroDaConta);
+        return new TransacaoMensagem(transacao, valor, LocalDateTime.now(), idCliente, numeroConta);
     }
 
 }

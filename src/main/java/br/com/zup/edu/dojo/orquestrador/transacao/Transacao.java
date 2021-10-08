@@ -33,18 +33,18 @@ public class Transacao {
     private UUID idCliente;
 
     @NotBlank
-    private String numeroDaConta;
+    private String numeroConta;
 
     @Deprecated
     public Transacao() {
     }
 
-    public Transacao(TipoTransacao operacao, BigDecimal valor, LocalDateTime efetuadaEm, UUID idCliente, String numeroDaConta) {
+    public Transacao(TipoTransacao operacao, BigDecimal valor, LocalDateTime efetuadaEm, UUID idCliente, String numeroConta) {
         this.operacao = operacao;
         this.valor = valor;
         this.efetuadaEm = efetuadaEm;
         this.idCliente = idCliente;
-        this.numeroDaConta = numeroDaConta;
+        this.numeroConta = numeroConta;
     }
 
     public Long getId() {
@@ -67,7 +67,7 @@ public class Transacao {
         return idCliente;
     }
 
-    public String getNumeroDaConta() {
-        return numeroDaConta;
+    public String getNumeroConta() {
+        return numeroConta;
     }
 }
