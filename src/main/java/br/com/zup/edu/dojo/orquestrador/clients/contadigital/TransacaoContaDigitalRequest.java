@@ -1,31 +1,28 @@
-package br.com.zup.edu.dojo.orquestrador.clients;
+package br.com.zup.edu.dojo.orquestrador.clients.contadigital;
 
-import br.com.zup.edu.dojo.orquestrador.kakfa.TipoOperacao;
-import br.com.zup.edu.dojo.orquestrador.kakfa.TransacaoMensagem;
+import br.com.zup.edu.dojo.orquestrador.transacao.TipoTransacaoContaDigital;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
-public class TransacaoRequest {
+public class TransacaoContaDigitalRequest {
 
     @NotBlank
     @JsonProperty
     private String numeroDaConta;
     @NotNull
     @JsonProperty
-    private TipoTransacao tipoDaTransacao;
+    private TipoTransacaoContaDigital tipoDaTransacao;
     @NotNull
     @Positive
     @JsonProperty
     private BigDecimal valor;
 
 
-    public TransacaoRequest(String numeroDaConta, TipoTransacao tipoDaTransacao, BigDecimal valor) {
+    public TransacaoContaDigitalRequest(String numeroDaConta, TipoTransacaoContaDigital tipoDaTransacao, BigDecimal valor) {
         this.numeroDaConta = numeroDaConta;
         this.tipoDaTransacao = tipoDaTransacao;
         this.valor = valor;
@@ -35,7 +32,7 @@ public class TransacaoRequest {
         return numeroDaConta;
     }
 
-    public TipoTransacao getTipoDaTransacao() {
+    public TipoTransacaoContaDigital getTipoDaTransacao() {
         return tipoDaTransacao;
     }
 
@@ -43,7 +40,10 @@ public class TransacaoRequest {
         return valor;
     }
 
-    public TransacaoMensagem paraTransacaoMensagem(UUID idCliente) {
-        return new TransacaoMensagem(this.tipoDaTransacao.getOperacao(), valor, LocalDateTime.now(), idCliente, numeroDaConta);
-    }
+
+
+
+//    public TransacaoMensagem paraTransacaoMensagem(UUID idCliente) {
+//        return new TransacaoMensagem(this.tipoDaTransacao.getOperacao(), valor, LocalDateTime.now(), idCliente, numeroDaConta);
+//    }
 }

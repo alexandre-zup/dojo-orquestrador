@@ -1,4 +1,4 @@
-package br.com.zup.edu.dojo.orquestrador.kakfa;
+package br.com.zup.edu.dojo.orquestrador.transacao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

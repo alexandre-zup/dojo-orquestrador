@@ -1,4 +1,6 @@
-package br.com.zup.edu.dojo.orquestrador.kakfa;
+package br.com.zup.edu.dojo.orquestrador.transacao;
+
+import br.com.zup.edu.dojo.orquestrador.kakfa.TipoTransacao;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +19,7 @@ public class Transacao {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private TipoOperacao operacao;
+    private TipoTransacao operacao;
 
     @NotNull
     @Positive
@@ -37,7 +39,7 @@ public class Transacao {
     public Transacao() {
     }
 
-    public Transacao(TipoOperacao operacao, BigDecimal valor, LocalDateTime efetuadaEm, UUID idCliente, String numeroDaConta) {
+    public Transacao(TipoTransacao operacao, BigDecimal valor, LocalDateTime efetuadaEm, UUID idCliente, String numeroDaConta) {
         this.operacao = operacao;
         this.valor = valor;
         this.efetuadaEm = efetuadaEm;
@@ -49,7 +51,7 @@ public class Transacao {
         return id;
     }
 
-    public TipoOperacao getOperacao() {
+    public TipoTransacao getOperacao() {
         return operacao;
     }
 
